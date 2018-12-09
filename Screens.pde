@@ -13,10 +13,12 @@ void initiliazeGifs(){
   loadingGif.loop();
 }
 
+ // Showing a gif that asks to put the token to the scanner
 void WaitingForToken() {
   image( waitingGif, width / 2 -  waitingGif.width, height / 2 -  waitingGif.height / 2);
 }
 
+ // Showing a gif that shows that we reading token and "analyzing" the data
 void LoadingTokenData() {
   image( loadingGif, width / 2 -  loadingGif.width, height / 2 -  loadingGif.height / 2);
 

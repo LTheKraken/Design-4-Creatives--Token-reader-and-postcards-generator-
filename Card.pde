@@ -3,16 +3,16 @@
 //Some public variables connected to cards
   int card_w = 300; // Width of card
   int card_h = 600; // Height of card
-  int margin = 20;
+  int margin = 20;  // Margin around the card
 
 class Card{
-  PGraphics canvas;
+  PGraphics canvas; //The postcard canvas
   float x,y,w,h;
-  int index;
+  int index;        // Index which postcard it is now
   
   Children symbC_c, symbC_l;
-  PShape symb[];
-  PShape symbC; //Symbol with childrens
+  PShape symb[]; //Symbols (elements)
+  PShape symbC;  //Symbol with childrens
 
    Card(float x, float y, float w, float h, int index){
      this.x = x;
@@ -20,35 +20,37 @@ class Card{
      this.w = w;
      this.h = h;
      this.index = index;
-     float size = random(80,300);
-     int selectedColorPallete = index;
+     float size = random(80,300); 
+     int selectedColorPallete = index; //Choose the color pallete
      
      initializeSVG();
     
      canvas = createGraphics(card_w, card_h);
-     canvas.beginDraw();
+     canvas.beginDraw(); //Start drawing on the postcard
      canvas.noStroke();
      canvas.background(colorList[selectedColorPallete][0]);
      
-     for(int i = 0; i < 4; i++){
-         
-       
+     for(int i = 0; i < 4; i++){       
        for(int j = 0; j < (int) random(1,10); j++){
         symb[i].disableStyle();  // Ignore the colors in the SVG
-        canvas.fill(colorList[selectedColorPallete][i+1]);    // Set the SVG fill to blue
+        canvas.fill(colorList[selectedColorPallete][i+1]);    // Set the SVG fill pallete colors
 
         size = random(100,150);
-        // rotate symbol randombly between 0 - 360 degrees
+        
+        // rotate symbol randomly between 0 - 360 degrees
         symb[i].rotate(radians(random(0,360))); 
+        
+        //Creates random position.
+        // TODO. Maybea later we can create function that not let to overlap elements on each other?
         float X = random(0 + margin,card_w - margin);
         float Y = random(0 + margin, card_h - margin);
-        println("X : ", x, "Y: ", y, " Xr: ", X, "Yr: ", Y);
+        
         canvas.shape(symb[i],X,Y,size,size);
-         
-       }
-     }
+       } // for j loop end 
+     } // for i loop end
 
-// Symbol with children draw
+
+    // Draw Symbol with children
     //println("Draw symbolC");
     //symbC_l.draw(canvas);
     //symbC_c.draw(canvas);
@@ -57,8 +59,7 @@ class Card{
    }
   
   void display(){
-    image(canvas,x,y);
-    
+    image(canvas,x,y); // Display the card
 }
   
     void isClicked(){
@@ -72,9 +73,8 @@ class Card{
   void initializeSVG(){  //set SVG
     symb = new PShape[4];
     
-    switch(index) {
+    switch(index) { 
   case 0: 
-    
     symb[0] = loadShape("symbols-02.svg");
     symb[1] = loadShape("symbols-03.svg");
     symb[2] = loadShape("symbols-04.svg");
@@ -98,6 +98,7 @@ class Card{
     break;
 }
 
+    //Create Symbol with Children
     float size = random(20,300);
     
     PVector symbC_pos = new PVector(random(0+margin,card_w-margin),random(0+margin,card_h-margin));
@@ -125,11 +126,9 @@ void initializeCards(){
 
 //Draw Cards
 void drawCards(){
-  
    for(int i=0; i < card_n; i++){
    cards[i].display();
   }
-  
 }
 
 // Collects the number of clicks

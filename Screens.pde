@@ -15,12 +15,12 @@ void initiliazeGifs(){
 
  // Showing a gif that asks to put the token to the scanner
 void WaitingForToken() {
-  image( waitingGif, width / 2 -  waitingGif.width, height / 2 -  waitingGif.height / 2);
+  image( waitingGif, width / 2 -  waitingGif.width/ 2, height / 2 -  waitingGif.height / 2);
 }
 
  // Showing a gif that shows that we reading token and "analyzing" the data
 void LoadingTokenData() {
-  image( loadingGif, width / 2 -  loadingGif.width, height / 2 -  loadingGif.height / 2);
+  image( loadingGif, width / 2 -  loadingGif.width/ 2, height / 2 -  loadingGif.height / 2);
 
 }
 
@@ -34,6 +34,7 @@ void showScreen() {
     break;
   case 2: // 2 - Card selection screen 
      noStroke();
+     background(255);
      drawCards();
     break;
   case 3: // 3 - After card selection

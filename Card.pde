@@ -1,4 +1,6 @@
-  //Some public variables connected to cards
+// Everything that connected to making, choosing, cards
+
+//Some public variables connected to cards
   int card_w = 300; // Width of card
   int card_h = 600; // Height of card
   int margin = 20;

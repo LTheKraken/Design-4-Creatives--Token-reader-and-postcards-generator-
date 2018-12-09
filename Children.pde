@@ -1,3 +1,5 @@
+//Class to controls the insides of SVG
+
 class Children 
 {
   PShape child;

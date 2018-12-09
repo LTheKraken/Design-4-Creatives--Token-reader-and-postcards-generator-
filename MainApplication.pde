@@ -28,6 +28,7 @@ Gif waitingGif;
   
   
   void draw(){
+    //dALYKS
      noStroke();
      drawCards();
   }

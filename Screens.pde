@@ -56,7 +56,8 @@ void showScreen() {
     break;
   case 3: // 3 - After card selection
    background(255);
-   drawCards();
+   fill(0);
+   text("You are cool", width/2,height/2);
    
    break;
   case 4:   // 4 - Printing

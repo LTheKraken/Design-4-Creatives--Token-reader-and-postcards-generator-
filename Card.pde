@@ -4,6 +4,10 @@
   int card_w = 300; // Width of card
   int card_h = 600; // Height of card
   int margin = 20;  // Margin around the card
+  
+  int selectedCardIndex = -1;
+  
+  boolean cardSelected = false;
 
 class Card{
   PGraphics canvas; //The postcard canvas
@@ -59,13 +63,28 @@ class Card{
    }
   
   void display(){
+    if(index == selectedCardIndex){
+     stroke(0,255,0);
+     strokeWeight(5);
+     rect(x,y,w,h);
+    }
+    else if(isMouseOnTop()){ // Make an outline to know if the card is clickable
+     stroke(255,0,0);
+     strokeWeight(5);
+     rect(x,y,w,h);
+    }else{
+     noStroke();
+    }
     image(canvas,x,y); // Display the card
-}
+} // End of display()
   
     void isClicked(){
     if(mouseX >= x && mouseX <= x+ w && mouseY >= y && mouseY <= y+ h){
-      clicks[currentPortrait][index]++;
-      println("Mouse",index," is pressed ",clicks[index], " times of ", allClicks());
+      clicks[currentPortrait][index]++; //Maybe not neccessary
+      
+      selectedCardIndex = index;
+      cp5.get(Button.class,"Select").setVisible(true);
+      println("Card ",index," is pressed");
     }
   }
   
@@ -106,9 +125,22 @@ class Card{
     symbC_c = new Children(symbC.getChild("circle"), symbC_pos, color(250, 20, 80), size);
     symbC_l = new Children(symbC.getChild("lines"), symbC_pos, color(158, 20, 80), size);
     println("Initialization of SVG complete");
+} // End of InitiliazeSVG()
+
+
+
+boolean isMouseOnTop(){
+  if(mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h){
+  return true;  
+} else return false;
 }
  
 } //********************** END OF CLASS
+
+
+
+
+
 
 
 //*****************************
@@ -126,9 +158,11 @@ void initializeCards(){
 
 //Draw Cards
 void drawCards(){
+  
    for(int i=0; i < card_n; i++){
    cards[i].display();
   }
+  
 }
 
 // Collects the number of clicks
